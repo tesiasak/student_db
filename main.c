@@ -11,45 +11,45 @@ int data_save(int count, struct student *s, const char *file);
 struct student * data_read( const char *file, int *count);
 
 int main(){
-    int c = 0;
-    int yn=0;
-    struct student *s;
-    struct student *data;
-    char *file = "data.bin";
-    int err = 0;
+	int c = 0;
+	int yn=0;
+	struct student *s;
+	struct student *data;
+	char *file = "data.bin";
+	int err = 0;
 
-    printf("Do you want to see existing student data?(1/0)\n");
-    scanf("%d",&yn);
-    if (yn==1){
-	printf("Reading %s\n", file);
-	data = data_read(file,&c);
-	if(!data)
-	    printf("Error reading database: %m\n");
-	else{
-	    printf("There are %d students in database:\n",c
-	    data_output(c, data);)
+	printf("Do you want to see existing student data?(1/0)\n");
+	scanf("%d",&yn);
+	if (yn==1){
+		printf("Reading %s\n", file);
+		data = data_read(file,&c);
+		if(!data)
+			printf("Error reading database: %m\n");
+		else{
+			printf("There are %d students in database:\n",c);
+			data_output( c, data);
+		}
+		return 0;
 	}
-	return 0;
-    }
 
-    printf("Pleasee enter number of student:");
-    scanf("%d",&c);
+	printf("Pleasee enter number of student:");
+	scanf("%d",&c);
 
-    s =(struct student *)malloc(sizeof(struct student)* c);
+	s =(struct student *)malloc(sizeof(struct student)* c);
 
-    data_input(c, s);
-    data_output(c, s);
+	data_input(c, s);
+	data_output(c, s);
 
-    printf("Do you want to save the data?(1/0)");
-    scanf("%d",&yn);
-    if(yn==1){
-	printf("Saving data to %s...\n", file);
-	err = data_save(c,s, file);
-	if(err){
-	    printf("Error saving data:%d(%m)\n",err);
+	printf("Do you want to save the data?(1/0)");
+	scanf("%d",&yn);
+	if(yn==1){
+		printf("Saving data to %s...\n", file);
+		err = data_save( c, s, file);
+		if(err){
+			printf("Error saving data:%d(%m)\n",err);
+		}
 	}
-    }
 
-    free(s);
-    return(0);
+	free(s);
+	return(0);
 }
