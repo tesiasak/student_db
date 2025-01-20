@@ -5,12 +5,12 @@ OBJECTS = $(SOURCES:.c=.o)
 
 defoult: $(BIN)
 $(BIN): common.h $(OBJECTS)
-    $(CC) $(OBJECTS) -o $@
+	$(CC) $(OBJECTS) -o $@
 
 clean:
-    rm $(BIN) $(OBJECTS)
+	rm $(BIN) $(OBJECTS)
 
 help:
-    @echo "Please run male $(BIN) or just make"
+	@echo "Please run male $(BIN) or just make"
 
 .PHONY: help clean defoult
